@@ -62,9 +62,7 @@ export function Home() {
     }
 
   }
-    // try to call and wait signOut
-    // if fails, display an Alert with the title "Erro SignOut" and message "Ocorreu um erro ao tentar se deslogar do app"
-
+  
   async function getTopGames() {
     try {
       const response = await api.get('/games/top');

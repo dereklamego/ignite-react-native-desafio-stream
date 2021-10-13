@@ -42,7 +42,6 @@ function AuthProvider({ children }: AuthProviderData) {
     try {
     
       setIsLoggingIn(true);
-
       const REDIRECT_URI = makeRedirectUri({ useProxy: true });
       const RESPONSE_TYPE = 'token';
       const SCOPE = encodeURI('openid user:read:email user:read:follows');
@@ -51,7 +50,7 @@ function AuthProvider({ children }: AuthProviderData) {
 
       const authUrl = twitchEndpoints.authorization + 
       `?client_id=${CLIENT_ID}` +
-      `&redirec_uri=${REDIRECT_URI}` +
+      `&redirect_uri=${REDIRECT_URI}` +
       `&response_type=${RESPONSE_TYPE}` +
       `&scope=${SCOPE}`+
       `&force_verify=${FORCE_VERIFY}` +
@@ -66,8 +65,7 @@ function AuthProvider({ children }: AuthProviderData) {
         }
 
         api.defaults.headers.authorization = `Bearer ${authResponse.params.access_token}`;
-        console.log(authResponse.params.access_token)
-        
+
         const userResponse = await api.get('/users'); 
 
         setUser({
